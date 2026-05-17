@@ -41,36 +41,37 @@ SEMINARIOIA/
 └── .gitignore              # Configuración de exclusión de archivos pesados o sensibles
 ```
 
-Instalación y Configuración Local
+## Instalación y Configuración Local
+
 1. Prerrequisitos
-Asegúrate de contar con Python 3.10+ instalado en tu sistema.
+    Asegúrate de contar con Python 3.10+ instalado en tu sistema.
 
 2. Clonar el repositorio
-Bash
-git clone [https://github.com/JonyGarciaaa/SeminarioIA.git](https://github.com/JonyGarciaaa/SeminarioIA.git)
-cd SeminarioIA
+    Bash
+    git clone [https://github.com/JonyGarciaaa/SeminarioIA.git](https://github.com/JonyGarciaaa/SeminarioIA.git)
+    cd SeminarioIA
+
 3. Instalar Dependencias
-Se recomienda utilizar un entorno virtual (venv):
+    Se recomienda utilizar un entorno virtual (venv):
+    Bash
+    python -m venv venv
+    source venv/bin/activate  # En Windows: venv\Scripts\activate
+    pip install -r requirements.txt
 
-Bash
-python -m venv venv
-source venv/bin/activate  # En Windows: venv\Scripts\activate
-pip install -r requirements.txt
 4. Configurar Variables de Entorno
-Crea un archivo .env en la raíz del proyecto basándote en .env.example:
-
-Fragmento de código
-SPOTIFY_CLIENT_ID=tu_client_id_de_spotify_developer
-SPOTIFY_CLIENT_SECRET=tu_client_secret_de_spotify_developer
-SPOTIFY_REDIRECT_URI=http://localhost:8501
-Nota: Debes registrar una aplicación en el Spotify Developer Dashboard para obtener estas credenciales.
+    El proyecto requiere interactuar con la API de Spotify. Para la ejecución local, asegúrate de que exista un archivo `.env` en la raíz del proyecto con la siguiente estructura (puedes guiarte de `.env.example`):
+    ```env
+    SPOTIFY_CLIENT_ID=tu_client_id_de_spotify
+    SPOTIFY_CLIENT_SECRET=tu_client_secret_de_spotify
+    SPOTIFY_REDIRECT_URI=http://localhost:8501
+    ```
 
 5. Entrenar el Modelo
-Antes de ejecutar la app, procesa el dataset ejecutando el script de entrenamiento:
+    Antes de ejecutar la app, procesa el dataset ejecutando el script de entrenamiento:
+    Bash
+    python train.py
+    6. Ejecutar la Aplicación
+    Bash
+    streamlit run app.py
 
-Bash
-python train.py
-6. Ejecutar la Aplicación
-Bash
-streamlit run app.py
 La aplicación se abrirá automáticamente en tu navegador web en la dirección http://localhost:8501.
