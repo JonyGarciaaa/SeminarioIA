@@ -70,7 +70,8 @@ SEMINARIOIA/
     Antes de ejecutar la app, procesa el dataset ejecutando el script de entrenamiento:
     Bash
     python train.py
-    6. Ejecutar la Aplicación
+
+6. Ejecutar la Aplicación
     Bash
     streamlit run app.py
 
