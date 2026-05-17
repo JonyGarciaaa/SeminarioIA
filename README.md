@@ -44,35 +44,55 @@ SEMINARIOIA/
 ## Instalación y Configuración Local
 
 1. Prerrequisitos
-    Asegúrate de contar con Python 3.10+ instalado en tu sistema.
 
-2. Clonar el repositorio
-    Bash
-    git clone [https://github.com/JonyGarciaaa/SeminarioIA.git](https://github.com/JonyGarciaaa/SeminarioIA.git)
-    cd SeminarioIA
+   Asegúrate de contar con Python 3.10+ instalado en tu sistema.
 
-3. Instalar Dependencias
-    Se recomienda utilizar un entorno virtual (venv):
-    Bash
-    python -m venv venv
-    source venv/bin/activate  # En Windows: venv\Scripts\activate
-    pip install -r requirements.txt
+3. Clonar el repositorio
 
-4. Configurar Variables de Entorno
-    El proyecto requiere interactuar con la API de Spotify. Para la ejecución local, asegúrate de que exista un archivo `.env` en la raíz del proyecto con la siguiente estructura (puedes guiarte de `.env.example`):
-    ```env
+   Bash
+
+   git clone [https://github.com/JonyGarciaaa/SeminarioIA.git](https://github.com/JonyGarciaaa/SeminarioIA.git)
+
+   cd SeminarioIA
+
+4. Instalar Dependencias
+
+   Se recomienda utilizar un entorno virtual (venv):
+
+   Bash
+
+   python -m venv venv
+
+   source venv/bin/activate
+
+   En Windows:
+
+   venv\Scripts\activate
+
+   pip install -r requirements.txt
+
+6. Configurar Variables de Entorno
+
+   El proyecto requiere interactuar con la API de Spotify. Para la ejecución local, asegúrate de que exista un archivo `.env` en la raíz del proyecto con la siguiente estructura (puedes guiarte de `.env.example`):
+
+   ```env
     SPOTIFY_CLIENT_ID=tu_client_id_de_spotify
     SPOTIFY_CLIENT_SECRET=tu_client_secret_de_spotify
     SPOTIFY_REDIRECT_URI=http://localhost:8501
     ```
 
-5. Entrenar el Modelo
-    Antes de ejecutar la app, procesa el dataset ejecutando el script de entrenamiento:
-    Bash
-    python train.py
+8. Entrenar el Modelo
 
-6. Ejecutar la Aplicación
+   Antes de ejecutar la app, procesa el dataset ejecutando el script de entrenamiento:
+
+   Bash
+
+   python train.py
+
+10. Ejecutar la Aplicación
+
     Bash
+
     streamlit run app.py
 
 La aplicación se abrirá automáticamente en tu navegador web en la dirección http://localhost:8501.
