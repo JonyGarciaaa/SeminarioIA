@@ -1,8 +1,8 @@
-# 🎵 Moodify AI - Recomendador Musical Basado en Emociones
+# Moodify AI - Recomendador Musical Basado en Emociones
 
 Moodify AI es un prototipo funcional (MVP) diseñado para la optimización del bienestar emocional a través de la música. Utiliza técnicas de Procesamiento de Lenguaje Natural (NLP) y Machine Learning para analizar las expresiones textuales de los usuarios sobre su estado de ánimo, clasificar su emoción predominante y generar recomendaciones automatizadas de playlists y canciones consumidas directamente desde la API oficial de Spotify.
 
-## 🚀 Características Principales
+## Características Principales
 - **Detección de Emociones:** Clasificación de texto en 5 categorías emocionales clave: Alegría, Tristeza, Enojo, Calma y Estrés.
 - **Análisis de Confianza:** Desglose probabilístico mediante gráficos interactivos sobre la certeza de la predicción del modelo.
 - **Integración con Spotify API:** Búsqueda dinámica y en tiempo real de playlists y pistas musicales que correspondan al estado de ánimo detectado.
@@ -10,7 +10,7 @@ Moodify AI es un prototipo funcional (MVP) diseñado para la optimización del b
 
 ---
 
-## 🛠️ Arquitectura y Stack Tecnológico
+## Arquitectura y Stack Tecnológico
 
 El proyecto está construido bajo una arquitectura monolítica desacoplada en su procesamiento de datos, dividida en la fase de entrenamiento local y la fase de inferencia/servido en la aplicación web:
 
@@ -21,7 +21,7 @@ El proyecto está construido bajo una arquitectura monolítica desacoplada en su
 
 ---
 
-## 📂 Estructura del Repositorio
+## Estructura del Repositorio
 
 ```text
 SEMINARIOIA/
