@@ -1,12 +1,13 @@
 # Moodify AI - Recomendador Musical Basado en Emociones
 
-Moodify AI es un prototipo funcional (MVP) diseñado para la optimización del bienestar emocional a través de la música. Utiliza técnicas de Procesamiento de Lenguaje Natural (NLP) y Machine Learning para analizar las expresiones textuales de los usuarios sobre su estado de ánimo, clasificar su emoción predominante y generar recomendaciones automatizadas de playlists y canciones consumidas directamente desde la API oficial de Spotify.
+Moodify AI es un prototipo funcional (MVP) diseñado para la optimización del bienestar emocional a través de la música. Utiliza técnicas de Procesamiento de Lenguaje Natural (NLP) y Deep Learning para analizar las expresiones textuales de los usuarios sobre su estado de ánimo, clasificar su emoción predominante mediante una red neuronal MLP y generar recomendaciones automatizadas de playlists y canciones consumidas directamente desde la API oficial de Spotify.
 
 ## Características Principales
-- **Detección de Emociones:** Clasificación de texto en 5 categorías emocionales clave: Alegría, Tristeza, Enojo, Calma y Estrés.
-- **Análisis de Confianza:** Desglose probabilístico mediante gráficos interactivos sobre la certeza de la predicción del modelo.
-- **Integración con Spotify API:** Búsqueda dinámica y en tiempo real de playlists y pistas musicales que correspondan al estado de ánimo detectado.
-- **Reproducción Integrada:** Audio previews embebidos directamente en la interfaz de usuario cuando están disponibles en la plataforma.
+- **Detección de Emociones:** Clasificación de texto en 5 categorías emocionales clave: Alegría, Tristeza, Enojo, Calma y Estrés mediante una red neuronal MLP entrenada con PyTorch.
+- **Análisis de Confianza:** Distribución probabilística vía Softmax con barra de progreso interactiva que muestra la certeza de la predicción del modelo.
+- **Integración con Spotify API:** Búsqueda dinámica y en tiempo real de playlists y pistas musicales que correspondan al estado de ánimo detectado mediante palabras clave por emoción.
+- **Reproducción Integrada:** Audio previews de 30 segundos embebidos directamente en la interfaz de usuario cuando están disponibles en la plataforma.
+- **Métricas del Modelo:** Panel lateral con precisión, recall y F1-score por clase calculados en tiempo de ejecución sobre el conjunto de prueba.
 
 ---
 
@@ -14,10 +15,13 @@ Moodify AI es un prototipo funcional (MVP) diseñado para la optimización del b
 
 El proyecto está construido bajo una arquitectura monolítica desacoplada en su procesamiento de datos, dividida en la fase de entrenamiento local y la fase de inferencia/servido en la aplicación web:
 
-- **Frontend / Interfaz:** Streamlit (v1.33.0) - Framework ágil para despliegue de aplicaciones de datos.
-- **Modelado de IA & NLP:** - Scikit-learn & Joblib para la vectorización (TF-IDF) y el clasificador clásico.
-  - NLTK para la limpieza de Stopwords en español.
-- **Integración Externa:** Spotipy (Wrapper oficial de Spotify Web API).
+- **Frontend / Interfaz:** Framework ágil para despliegue de aplicaciones de datos con soporte para audio embebido y métricas en sidebar.
+- **Modelado de IA & NLP:**
+  -  PyTorch — Red neuronal MLP (EmotionMLP) para clasificación multiclase de emociones.
+  - Scikit — Vectorización TF-IDF (max_features=5000) y serialización de artefactos.
+  - NLTK — para la limpieza de Stopwords en español.
+- **Integración Externa:** Spotipy con flujo SpotifyOAuth para búsqueda de playlists y tracks por palabras clave emocionales.
+- **Gestión de credenciales:** python-dotenv para carga de variables de entorno desde .env.
 
 ---
 
@@ -26,19 +30,22 @@ El proyecto está construido bajo una arquitectura monolítica desacoplada en su
 ```text
 SEMINARIOIA/
 │
-├── .idea/                  # Configuraciones del IDE (PyCharm)
 ├── data/
-│   └── emociones.csv       # Dataset local con muestras etiquetadas para el entrenamiento
-├── models/                 # Modelos y serializaciones generadas por train.py (Ignorado por Git)
-│   ├── vectorizer.pkl      # Vocabulario/Transformador TF-IDF
-│   ├── id2label.pkl        # Diccionario de mapeo de índices a emociones
-│   └── model.pkl           # Modelo clasificador entrenado
+│   └── emociones.csv           # Dataset con 325 muestras etiquetadas (65 por emoción)
 │
-├── app.py                  # Aplicación principal e interfaz gráfica en Streamlit
-├── train.py                # Script de automatización de entrenamiento del modelo
-├── requirements.txt        # Definición de dependencias del entorno de ejecución
-├── .env.example            # Plantilla de variables de entorno para las credenciales de Spotify
-└── .gitignore              # Configuración de exclusión de archivos pesados o sensibles
+├── models/                     # Artefactos generados por train.py (ignorado por Git)
+│   ├── emociones_mlp.pth       # Pesos del modelo MLP entrenado (PyTorch state_dict)
+│   ├── vectorizer.pkl          # Transformador TF-IDF serializado con Joblib
+│   └── id2label.pkl            # Diccionario de mapeo índice → etiqueta de emoción
+│
+├── reports/
+│   └── confusion_matrix.png    # Matriz de confusión generada tras el entrenamiento
+│
+├── app.py                      # Aplicación principal e interfaz gráfica en Streamlit
+├── train.py                    # Script de entrenamiento del modelo MLP y generación de reportes
+├── requirements.txt            # Definición de dependencias del entorno de ejecución
+├── .env                        # Variables de entorno con credenciales de Spotify (no versionado)
+└── .gitignore                  # Exclusión de archivos pesados o sensibles
 ```
 
 ## Instalación y Configuración Local
